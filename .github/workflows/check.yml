@@ -15,7 +15,8 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 20.11.1
-        cache: 'pnpm'
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v3
     - name: Install dependencies
       run: pnpm ci
     - name: Check linter
