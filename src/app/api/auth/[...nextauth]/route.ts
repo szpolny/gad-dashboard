@@ -1,8 +1,8 @@
+import NextAuth from 'next-auth';
+import DiscordProvider from 'next-auth/providers/discord';
 import isDev from '@/lib/isDev';
 import { connectMongoDB } from '@/lib/mongodb';
 import User from '@/models/user';
-import NextAuth from 'next-auth';
-import DiscordProvider from 'next-auth/providers/discord';
 
 const handler = NextAuth({
   providers: [

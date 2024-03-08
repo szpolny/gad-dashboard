@@ -2,13 +2,21 @@
 
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { FaDiscord } from 'react-icons/fa';
+import { redirect } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
+import LoadingFull from '@/components/LoadingFull';
 
 const Home = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
-  if (!session) {
+  if (status === 'loading') {
+    return <LoadingFull />;
+  }
+
+  if (session) {
+    redirect('/dashboard');
+  } else {
     return (
       <div>
         <div className="flex w-full h-screen items-center justify-center">
@@ -25,13 +33,6 @@ const Home = () => {
             </Button>
           </div>
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <p>You are logged in as {session.user!.name}!</p>
-        <Button onClick={() => signOut()}>Sign out</Button>
       </div>
     );
   }
