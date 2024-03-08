@@ -1,3 +1,4 @@
+import isDev from '@/lib/isDev';
 import { connectMongoDB } from '@/lib/mongodb';
 import User from '@/models/user';
 import NextAuth from 'next-auth';
@@ -23,8 +24,10 @@ const handler = NextAuth({
         return true;
       }
 
+      const webUrl = isDev ? 'http://localhost:3000' : process.env.VERCEL_URL;
+
       try {
-        const res = await fetch('/api/user', {
+        const res = await fetch(`${webUrl}/api/user`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
