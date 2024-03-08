@@ -2,26 +2,28 @@ name: Build and lint check
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ['master']
   pull_request:
-    branches: [ "master" ]
+    branches: ['master']
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js LTS 20.11.1
-      uses: actions/setup-node@v3
-      with:
-        node-version: 20.11.1
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v3
-    - name: Install dependencies
-      run: pnpm ci
-    - name: Check linter
-      run: pnpm run lint
-    - name: Check prettier
-      run: pnpm prettier:check
-    - name: Build
-      run: pnpm build
+      - uses: actions/checkout@v3
+      - name: Use Node.js LTS 20.11.1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.11.1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm ci
+      - name: Check linter
+        run: pnpm run lint
+      - name: Check prettier
+        run: pnpm prettier:check
+      - name: Build
+        run: pnpm build
