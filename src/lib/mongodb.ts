@@ -1,15 +1,15 @@
-import { MongoClient } from 'mongodb';
+import { error } from 'console';
+import mongoose from 'mongoose';
 
-if (!process.env.MONGODB_URI) {
-  throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env.local',
-  );
-}
+export const connectMongoDB = async () => {
+  if (!process.env.MONGODB_URI) {
+    throw new Error('MONGODB_URI is not set');
+  }
 
-const uri = process.env.MONGODB_URI;
-const options = {};
-
-const client = new MongoClient(uri, options);
-const clientPromise = client.connect();
-
-export default clientPromise;
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log('MongoDB connected');
+  } catch (error) {
+    console.error('MongoDB connection error', error);
+  }
+};
