@@ -11,16 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js LTS 20.11.1
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20.11.1
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 8
+      - name: Use Node.js LTS 20.11.1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.11.1
+          cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm ci
+        run: pnpm install
       - name: Check linter
         run: pnpm run lint
       - name: Check prettier
