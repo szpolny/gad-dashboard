@@ -1,11 +1,12 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { signOut, useSession } from 'next-auth/react';
+import LoadingFull from '@/components/LoadingFull';
+import Navbar from '@/components/Navbar';
+import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 
 const Dashboard = () => {
-  const { status } = useSession({
+  const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
       redirect('/');
@@ -13,19 +14,12 @@ const Dashboard = () => {
   });
 
   if (status === 'loading') {
-    return <div>Loading...</div>;
+    return <LoadingFull />;
   }
 
   return (
     <div>
-      <p>Dashboard</p>
-      <Button
-        onClick={() => {
-          signOut();
-        }}
-      >
-        Wyloguj się
-      </Button>
+      <Navbar session={session} />
     </div>
   );
 };
