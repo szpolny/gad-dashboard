@@ -11,13 +11,35 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { LogOut } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import { Session } from 'next-auth';
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from './ui/navigation-menu';
 
 const Navbar = ({ session }: { session: Session }) => {
   return (
-    <nav className="flex items-center h-14 px-4 border-b gap-4 w-full md:px-6">
-      <Link className="flex items-center gap-2 text-lg font-semibold" href="#">
-        Home
-      </Link>
+    <nav className="flex items-center h-14 px-4 border-b gap-4 w-full md:px-6 b">
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <Link href="/dashboard" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Home
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/dashboard/users" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Users
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
       <div className="ml-auto flex items-center gap-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
