@@ -44,11 +44,11 @@ const Navbar = ({ session }: { session: Session }) => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
-              className="rounded-full border-2 w-11 h-11"
+              className="rounded-full w-11 h-11"
               size="icon"
               variant="ghost"
             >
-              <Avatar>
+              <Avatar className="w-9 h-9">
                 <AvatarImage src={session.user!.image!} />
                 <AvatarFallback>GAD</AvatarFallback>
               </Avatar>
