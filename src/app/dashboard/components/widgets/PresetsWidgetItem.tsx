@@ -4,7 +4,7 @@ interface PresetsListItemProps {
   item: string;
 }
 
-const PresetsListItem = ({ item }: PresetsListItemProps) => {
+const PresetsWidgetItem = ({ item }: PresetsListItemProps) => {
   return (
     <TableRow>
       <TableCell>{item}</TableCell>
@@ -12,4 +12,4 @@ const PresetsListItem = ({ item }: PresetsListItemProps) => {
   );
 };
 
-export default PresetsListItem;
+export default PresetsWidgetItem;

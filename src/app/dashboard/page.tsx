@@ -1,18 +1,14 @@
 'use client';
 
 import LoadingFull from '@/components/LoadingFull';
-import Navbar from '@/components/Navbar';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Table, TableBody } from '@/components/ui/table';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { LoaderCircleIcon } from 'lucide-react';
-import PresetsListItem from './presetsListItem';
+import PresetsWidget from './components/widgets/PresetsWidget';
+import Navbar from './components/Navbar';
 
 const Dashboard = () => {
-  const [presets, setPresets] = useState([]);
+  const [presets, setPresets] = useState({ list: [], loading: true });
   const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
@@ -24,7 +20,7 @@ const Dashboard = () => {
     const fetchPresets = async () => {
       const res = await fetch('/api/server/presets');
       const { presetsList: data } = await res.json();
-      setPresets(data);
+      setPresets({ list: data, loading: false });
     };
 
     fetchPresets();
@@ -44,28 +40,7 @@ const Dashboard = () => {
         className="flex items-center justify-center"
       >
         <div className="grid grid-cols-3 grid-rows-4 h-5/6 w-10/12">
-          <Card className="col-span-1 row-span-3">
-            <CardHeader>
-              <CardTitle>Presety</CardTitle>
-            </CardHeader>
-            <CardContent className="h-[80%]">
-              {presets.length === 0 ? (
-                <div className="h-full flex justify-center items-center">
-                  <LoaderCircleIcon className="animate-spin" />
-                </div>
-              ) : (
-                <ScrollArea className="h-full">
-                  <Table className="">
-                    <TableBody className="">
-                      {presets.map((p) => {
-                        return <PresetsListItem key={p} item={p} />;
-                      })}
-                    </TableBody>
-                  </Table>
-                </ScrollArea>
-              )}
-            </CardContent>
-          </Card>
+          <PresetsWidget presets={presets} />
         </div>
       </div>
     </div>
