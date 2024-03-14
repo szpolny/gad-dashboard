@@ -9,9 +9,10 @@ import { useEffect, useState } from 'react';
 import PresetsListItem from './presetsListItem';
 import { Table, TableBody } from '@/components/ui/table';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { LoaderCircleIcon } from 'lucide-react';
 
 const Dashboard = () => {
-  const [presets, setPresets] = useState(['loading']);
+  const [presets, setPresets] = useState([]);
   const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
@@ -48,15 +49,21 @@ const Dashboard = () => {
               <CardTitle>Presety</CardTitle>
             </CardHeader>
             <CardContent className="h-[80%]">
-              <ScrollArea className="h-full">
-                <Table className="">
-                  <TableBody className="">
-                    {presets.map((p) => {
-                      return <PresetsListItem key={p} item={p} />;
-                    })}
-                  </TableBody>
-                </Table>
-              </ScrollArea>
+              {presets.length === 0 ? (
+                <div className="h-full flex justify-center items-center">
+                  <LoaderCircleIcon className="animate-spin" />
+                </div>
+              ) : (
+                <ScrollArea className="h-full">
+                  <Table className="">
+                    <TableBody className="">
+                      {presets.map((p) => {
+                        return <PresetsListItem key={p} item={p} />;
+                      })}
+                    </TableBody>
+                  </Table>
+                </ScrollArea>
+              )}
             </CardContent>
           </Card>
         </div>
