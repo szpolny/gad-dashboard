@@ -1,6 +1,7 @@
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -17,11 +18,12 @@ interface IPresetsWidgetProps {
 
 const PresetsWidget = ({ presets }: IPresetsWidgetProps) => {
   return (
-    <Card className="col-span-1 row-span-3 m-4">
+    <Card className="col-span-1 row-span-8 m-4">
       <CardHeader>
         <CardTitle>Presety</CardTitle>
+        <CardDescription>Lista presetów na serwerze</CardDescription>
       </CardHeader>
-      <CardContent className="h-[70%]">
+      <CardContent className="h-[60%] sm:h-[70%]">
         {presets.loading ? (
           <div className="h-full flex justify-center items-center">
             <LoaderCircleIcon className="animate-spin" />
