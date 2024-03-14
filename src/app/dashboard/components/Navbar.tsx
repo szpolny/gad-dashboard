@@ -32,9 +32,23 @@ const Navbar = ({ session }: { session: Session }) => {
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
+            <Link href="/dashboard/presets" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Presety
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/dashboard/mods" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Mody
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
             <Link href="/dashboard/users" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Users
+                Uprawnienia
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>

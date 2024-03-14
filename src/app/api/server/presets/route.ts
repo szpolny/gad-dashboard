@@ -12,7 +12,8 @@ export async function GET() {
     });
 
     const data = await client.list('/mods/presets');
-    const presetsList = data.map((file) => file.name.replace('.txt', ''));
+    let presetsList = data.map((file) => file.name.replace('.txt', ''));
+    presetsList = presetsList.filter((file) => file !== 'mods-available');
     client.end();
     return NextResponse.json({ presetsList }, { status: 200 });
   } catch (e) {
