@@ -12,6 +12,14 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
+    async session({ session }) {
+      const newSession = session;
+      await connectMongoDB();
+      const user = await User.findOne({ email: session.user.email });
+      newSession.user.roles = user.roles;
+
+      return newSession;
+    },
     async signIn({ user, account }) {
       if (account!.provider !== 'discord') return false;
 

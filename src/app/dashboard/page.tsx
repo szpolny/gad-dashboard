@@ -33,6 +33,10 @@ const Dashboard = () => {
     return <LoadingFull />;
   }
 
+  if (!session?.user.roles.includes('access')) {
+    redirect('/not-authorized');
+  }
+
   return (
     <div className="sm:h-screen">
       <Navbar session={session} />
