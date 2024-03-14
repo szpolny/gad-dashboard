@@ -33,7 +33,7 @@ const ModsWidget = () => {
   }, []);
 
   return (
-    <Card className="col-span-2 row-span-6 m-4">
+    <Card className="col-span-1 sm:col-span-2 row-span-6 max-h-96 sm:max-h-none m-4">
       <CardHeader>
         <CardTitle>Mody</CardTitle>
         <CardDescription>Aktualne mody odpalone na serwerze</CardDescription>

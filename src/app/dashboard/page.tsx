@@ -1,6 +1,7 @@
 'use client';
 
 import LoadingFull from '@/components/LoadingFull';
+import { css } from '@emotion/react';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -33,15 +34,17 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="h-screen">
+    <div className="sm:h-screen">
       <Navbar session={session} />
       <div
-        style={{
-          height: 'calc(100vh - 3.5rem)',
-        }}
+        css={css`
+          @media (min-width: 640px) {
+            height: calc(100vh - 3.5rem);
+          }
+        `}
         className="flex items-center justify-center"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-3 grid-rows-8 h-5/6 w-10/12 min-h-[650px]">
+        <div className="grid grid-cols-1 sm:grid-cols-3 grid-rows-8 sm:h-5/6 w-10/12 sm:min-h-[650px]">
           <PresetsWidget presets={presets} />
           <PlayersWidget />
           <ModsWidget />
