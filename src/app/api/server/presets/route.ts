@@ -13,9 +13,11 @@ export async function GET() {
 
     const data = await client.list('/mods/presets');
     const presetsList = data.map((file) => file.name.replace('.txt', ''));
+    client.end();
     return NextResponse.json({ presetsList }, { status: 200 });
   } catch (e) {
     console.error('Failed to fetch presets', e);
+    client.end();
     return NextResponse.json(
       { error: 'Error connecting to SFTP server' },
       { status: 500 },
