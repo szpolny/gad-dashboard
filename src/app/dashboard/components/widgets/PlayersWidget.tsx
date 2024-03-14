@@ -30,7 +30,7 @@ const PlayersWidget = () => {
   return (
     <Card className="col-span-1 row-span-3 m-4">
       <CardHeader>
-        <CardTitle>Graczy</CardTitle>
+        <CardTitle>Gracze</CardTitle>
         <CardDescription>Liczba graczy na serwerze</CardDescription>
       </CardHeader>
       <CardContent>
