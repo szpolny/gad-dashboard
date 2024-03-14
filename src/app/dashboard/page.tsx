@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import PresetsWidget from './components/widgets/PresetsWidget';
 import Navbar from './components/Navbar';
 import PlayersWidget from './components/widgets/PlayersWidget';
+import ModsWidget from './components/widgets/ModsWidget';
 
 const Dashboard = () => {
   const [presets, setPresets] = useState({ list: [], loading: true });
@@ -43,6 +44,7 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 grid-rows-8 h-5/6 w-10/12 min-h-[650px]">
           <PresetsWidget presets={presets} />
           <PlayersWidget />
+          <ModsWidget />
         </div>
       </div>
     </div>
