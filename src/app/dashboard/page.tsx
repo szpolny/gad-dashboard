@@ -6,10 +6,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import PresetsListItem from './presetsListItem';
 import { Table, TableBody } from '@/components/ui/table';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { LoaderCircleIcon } from 'lucide-react';
+import PresetsListItem from './presetsListItem';
 
 const Dashboard = () => {
   const [presets, setPresets] = useState([]);

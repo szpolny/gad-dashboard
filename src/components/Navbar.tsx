@@ -1,4 +1,7 @@
 import Link from 'next/link';
+import { LogOut } from 'lucide-react';
+import { signOut } from 'next-auth/react';
+import { Session } from 'next-auth';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,9 +11,6 @@ import {
 } from './ui/dropdown-menu';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { LogOut } from 'lucide-react';
-import { signOut } from 'next-auth/react';
-import { Session } from 'next-auth';
 import {
   NavigationMenu,
   NavigationMenuItem,

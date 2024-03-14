@@ -1,7 +1,7 @@
 'use client';
 
 import { SessionProvider } from 'next-auth/react';
-import { ThemeProvider } from '@/components/theme-provider';
+import ThemeProvider from '@/components/theme-provider';
 import './globals.css';
 
 export default function RootLayout({
