@@ -78,8 +78,8 @@ const ModsPage = () => {
         `}
         className="flex items-center justify-center"
       >
-        <div className="grid grid-cols-2 grid-rows-1 h-5/6 w-10/12">
-          <Card className="m-5 col-span-1 row-span-1">
+        <div className="grid grid-cols-1 sm:grid-cols-3 grid-rows-2 sm:grid-rows-1 h-5/6 w-10/12">
+          <Card className="m-5 col-span-1 row-span-1 max-h-96 sm:max-h-none">
             <CardHeader>
               <CardTitle>Odpalone mody</CardTitle>
               <CardDescription>Mody w aktualnym presecie</CardDescription>
@@ -118,7 +118,7 @@ const ModsPage = () => {
               )}
             </CardContent>
           </Card>
-          <Card className="m-5 col-span-1 row-span-1">
+          <Card className="m-5 col-span-1 sm:col-span-2 max-h-96 sm:max-h-none row-span-1">
             <CardHeader>
               <CardTitle>Pobrane mody</CardTitle>
               <CardDescription>Mody pobrane na serwerze</CardDescription>
@@ -135,16 +135,20 @@ const ModsPage = () => {
                           <TableRow key={mod.id}>
                             <TableCell>{mod.title}</TableCell>
                             <TableCell>
-                              <Button
-                                onClick={() => {
-                                  window.open(
-                                    `https://steamcommunity.com/sharedfiles/filedetails/?id=${mod}`,
-                                    '_blank',
-                                  );
-                                }}
-                              >
-                                Steam Workshop
-                              </Button>
+                              {mod.id === 'none' ? (
+                                <p>Mod lokalny</p>
+                              ) : (
+                                <Button
+                                  onClick={() => {
+                                    window.open(
+                                      `https://steamcommunity.com/sharedfiles/filedetails/?id=${mod}`,
+                                      '_blank',
+                                    );
+                                  }}
+                                >
+                                  Steam Workshop
+                                </Button>
+                              )}
                             </TableCell>
                           </TableRow>
                         );

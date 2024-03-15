@@ -32,12 +32,16 @@ export async function GET() {
       lines.push(line);
     }
 
-    lines = lines.map((line) => line.split(':')[1]);
-
-    lines = lines.filter((line) => line !== undefined);
+    lines = lines.map((line) => {
+      if (line.split(':')[1] !== undefined) return line.split(':')[1];
+      return line.split(':')[0];
+    });
 
     const mods: IMod[] = await Promise.all(
       lines.map(async (id): Promise<IMod> => {
+        if (id.startsWith('@')) {
+          return { title: id, id: 'none' };
+        }
         const title = await fetchTitle(
           `https://steamcommunity.com/sharedfiles/filedetails/?id=${id}`,
         );
