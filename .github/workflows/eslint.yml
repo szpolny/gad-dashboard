@@ -31,7 +31,7 @@ jobs:
           pnpm install @microsoft/eslint-formatter-sarif@2.1.7
 
       - name: Run ESLint
-        run: npx eslint .
+        run: pnpm exec eslint .
           --config .eslintrc.json
           --ext .ts,.tsx
           --format @microsoft/eslint-formatter-sarif
