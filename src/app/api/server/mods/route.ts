@@ -32,6 +32,8 @@ export async function GET() {
       lines.push(line);
     }
 
+    client.end();
+
     lines = lines.map((line) => {
       if (line.split(':')[1] !== undefined) return line.split(':')[1];
       return line.split(':')[0];
@@ -61,6 +63,4 @@ export async function GET() {
       { status: 500 },
     );
   }
-
-  client.end();
 }
