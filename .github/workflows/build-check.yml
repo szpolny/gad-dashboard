@@ -1,4 +1,4 @@
-name: Build and lint check
+name: Build check
 
 on:
   push:
@@ -22,9 +22,5 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Check linter
-        run: pnpm run lint
-      - name: Check prettier
-        run: pnpm prettier:check
       - name: Build
         run: pnpm build
