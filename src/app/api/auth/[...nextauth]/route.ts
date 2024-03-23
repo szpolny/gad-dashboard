@@ -53,6 +53,7 @@ const handler = NextAuth({
         if (res.ok) {
           return true;
         }
+        console.log(res);
       } catch (error) {
         console.error('Failed to create user', error);
       }
