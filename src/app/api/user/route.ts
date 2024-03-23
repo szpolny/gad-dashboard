@@ -11,7 +11,16 @@ interface IArgs {
 
 export async function POST(req: Request) {
   const { username, email, image, roles }: IArgs = await req.json();
-  await connectMongoDB();
-  await User.create({ username, email, image, roles });
-  return NextResponse.json({ message: 'User created' }, { status: 201 });
+  try {
+    await connectMongoDB();
+    await User.create({ username, email, image, roles });
+    return NextResponse.json({ message: 'User created' }, { status: 201 });
+  } catch (error) {
+    console.error(error);
+  }
+
+  return NextResponse.json(
+    { message: 'Failed to create user' },
+    { status: 500 },
+  );
 }
