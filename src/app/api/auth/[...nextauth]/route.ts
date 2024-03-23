@@ -32,7 +32,9 @@ const handler = NextAuth({
         return true;
       }
 
-      const webUrl = isDev ? 'http://localhost:3000' : process.env.VERCEL_URL;
+      const webUrl = isDev
+        ? 'http://localhost:3000'
+        : `https://${process.env.VERCEL_URL}`;
 
       try {
         const res = await fetch(`${webUrl}/api/user`, {
